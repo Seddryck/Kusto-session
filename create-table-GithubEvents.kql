@@ -1,0 +1,43 @@
+﻿.drop table ['Events'] ifexists
+
+.create table ['Events']  (['EventId']:long, ['Type']:string, ['Actor']:string, ['Repository']:dynamic, ['Payload']:dynamic, ['Public']:bool, ['CreatedAt']:datetime, ['SourceFile']:string)
+
+.show table ['Events']
+
+.drop table ['Events'] ingestion json mapping "Events_mapping"
+
+.create table ['Events'] ingestion json mapping 'Events_mapping' 
+'[{"column":"EventId","path":"$[\'id\']","datatype":"long","transform":null},{"column":"Type","path":"$[\'type\']","datatype":"string","transform":null},{"column":"Actor","path":"$.actor.login","datatype":"string","transform":null},{"column":"Repository","path":"$[\'repo\']","datatype":"dynamic","transform":null},{"column":"Payload","path":"$[\'payload\']","datatype":"dynamic","transform":null},{"column":"Public","path":"$[\'public\']","datatype":"bool","transform":null},{"column":"CreatedAt","path":"$[\'created_at\']","datatype":"datetime","transform":null},{"column":"SourceFile","datatype":"string","transform":"SourceLocation"}]'
+
+.ingest async into table ['Events']
+(
+    'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-0.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-1.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-2.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-3.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-4.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-5.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-6.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-7.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-8.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-9.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-10.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-11.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-12.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-13.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-14.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-15.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-16.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-17.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-18.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-19.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-20.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-21.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-22.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+    , 'https://adxdemo.blob.core.windows.net/adx-demo/github-events/Github-2020-08-01-23.json.gz?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-10-15T03:10:49Z&st=2020-10-09T19:10:49Z&spr=https&sig=e4iCvmj%2FvA5TrjtDGTYLzypGDf...'
+)
+with (format="json", ingestionMappingReference = "Events_mapping", persistDetails=true)
+
+.show operations cf01b5f2-89cd-4f63-89d1-c1d06fef0ded
+
+.show operation cf01b5f2-89cd-4f63-89d1-c1d06fef0ded details
