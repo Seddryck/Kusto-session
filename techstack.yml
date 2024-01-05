@@ -1,7 +1,8 @@
 repo_name: Seddryck/Kusto-session
 report_id: e7e5da67d7cea513438460970775d4f1
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-12T20:21:40+00:00'
+timestamp: '2024-01-05T08:47:52+00:00'
 requested_by: Seddryck
 provider: github
 branch: main
@@ -15,6 +16,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/Seddryck/Kusto-session
   detection_source: Repo Metadata
 - name: Jupyter
   description: Multi-language interactive computing environments.
@@ -25,6 +27,7 @@ tools:
   category: Application Utilities
   sub_category: Data Science Notebooks
   image_url: https://img.stackshare.io/service/4190/fGBUdNf__400x400.jpg
+  detection_source_url: https://github.com/Seddryck/Kusto-session
   detection_source: Repo Metadata
 - name: PowerShell
   description: A task automation and configuration management framework
@@ -34,4 +37,5 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/3681/powershell-logo.png
+  detection_source_url: https://github.com/Seddryck/Kusto-session
   detection_source: Repo Metadata
